@@ -3,8 +3,8 @@ class PostsController < ApplicationController
     @posts = Post.all.order(id: "DESC")
   end
 
-
   def checked
+    binding.pry
     post = Post.find(params[:id])
     if post.checked 
       post.update(checked: false)
