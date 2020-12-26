@@ -3,9 +3,16 @@ class PostsController < ApplicationController
     @posts = Post.all.order(id: "DESC")
   end
 
+  def checked
+    binding.pry
+    post = Post.find(params[:id])
+    if post.checked 
+      post.update(checked: false)
+    else
+      post.update(checked: true)
+    end
 
-  def create
-    Post.create(content: params[:content])
-    redirect_to action: :index
+    item = Post.find(params[:id])
+    render json: { post: item }
   end
 end
